@@ -1,0 +1,16 @@
+{
+    "name": "mygento/currency",
+    "type": "magento-module",
+    "license": "Apache-2.0",
+    "homepage": "https://github.com/mygento/currency.git",
+    "description": "Курс валюты ЦБРФ",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/mygento/currency.git"
+        }
+    ]
+}
