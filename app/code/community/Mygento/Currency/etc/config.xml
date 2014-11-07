@@ -54,4 +54,12 @@
             </modules>
         </translate>
     </frontend>
+    <default>
+        <currency>
+            <cbrf>
+                <timeout>100</timeout>
+                <fee>0</fee>
+            </cbrf>
+        </currency> 
+    </default>
 </config>

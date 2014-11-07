@@ -1,2 +1,3 @@
 app/code/community/Mygento/Currency app/code/community/Mygento/Currency
 app/etc/modules/Mygento_Currency.xml app/etc/modules/Mygento_Currency.xml
+app/locale/ru_RU/Mygento_Currency.csv app/locale/ru_RU/Mygento_Currency.csv

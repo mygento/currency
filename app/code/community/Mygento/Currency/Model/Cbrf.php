@@ -42,7 +42,7 @@ class Mygento_Currency_Model_Cbrf extends Mage_Directory_Model_Currency_Import_A
         try {
             $response = $this->_httpClient
                     ->setUri($this->_url)
-                    //->setConfig(array('timeout' => Mage::getStoreConfig('currency/webservicex/timeout')))
+                    ->setConfig(array('timeout' => Mage::getStoreConfig('currency/cbrf/timeout')))
                     ->request('GET')
                     ->getBody();
 
@@ -57,9 +57,15 @@ class Mygento_Currency_Model_Cbrf extends Mage_Directory_Model_Currency_Import_A
             foreach ($xml->Valute as $rate) {
                 if ('to' == $direction && $currencyFrom == $rate->CharCode) {
                     $value = floatval(str_replace(',', '.', $rate->Value)) / floatval(str_replace(',', '.', $rate->Nominal));
+                    if (Mage::getStoreConfig('currency/cbrf/fee')) {
+                        $value += $value * (Mage::getStoreConfig('currency/cbrf/fee') / 100);
+                    }
                     return $value;
                 } elseif ('from' == $direction && $currencyTo == $rate->CharCode) {
                     $value = floatval(str_replace(',', '.', $rate->Nominal)) / floatval(str_replace(',', '.', $rate->Value));
+                    if (Mage::getStoreConfig('currency/cbrf/fee')) {
+                        $value += $value * (Mage::getStoreConfig('currency/cbrf/fee') / 100);
+                    }
                     return $value;
                 }
             }

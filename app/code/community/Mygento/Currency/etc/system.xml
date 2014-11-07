@@ -1,0 +1,33 @@
+<config>
+    <sections>
+        <currency>
+            <groups>
+                <cbrf translate="label">
+                    <label>Central Bank of Russia Currency Rates</label>
+                    <sort_order>31</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <timeout translate="label">
+                            <label>Connection timeout in seconds</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </timeout>
+                        <fee translate="label">
+                            <label>Additional conversion fee, in percents</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>                        
+                        </fee>
+                    </fields>
+                </cbrf>
+            </groups>
+        </currency>
+    </sections>
+</config>
