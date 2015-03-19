@@ -13,7 +13,8 @@
 	"sebastian/phpdcd": "*",
 	"sebastian/phpcpd": "*",
         "jakub-onderka/php-parallel-lint": "0.*",
-        "jakub-onderka/php-console-highlighter": "0.*"
+        "jakub-onderka/php-console-highlighter": "0.*",
+	"phpmd/phpmd" : "@stable"
     },
     "repositories": [
         {

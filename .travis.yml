@@ -16,3 +16,4 @@ script:
   - php vendor/bin/parallel-lint --exclude vendor .
   - php vendor/bin/phpcpd --exclude=vendor .
   - php vendor/bin/phpdcd --exclude=vendor .
+  - php vendor/bin/phpmd . text codesize --exclude vendor
