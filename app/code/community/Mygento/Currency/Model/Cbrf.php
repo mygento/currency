@@ -17,6 +17,34 @@ class Mygento_Currency_Model_Cbrf extends Mage_Directory_Model_Currency_Import_A
     }
 
     /**
+     * Process rates
+     * 
+     * @param array $rates
+     * @param string $direction
+     * @param string $currencyFrom
+     * @param string $currencyTo
+     * @return float $value
+     */
+    protected function process_rates($rates, $direction, $currencyFrom, $currencyTo) {
+        $fee = Mage::getStoreConfig('currency/cbrf/fee');
+        foreach ($rates as $rate) {
+            if ('to' == $direction && $currencyFrom == $rate->CharCode) {
+                $value = floatval(str_replace(',', '.', $rate->Value)) / floatval(str_replace(',', '.', $rate->Nominal));
+                if ($fee) {
+                    $value += $value * (Mage::getStoreConfig('currency/cbrf/fee') / 100);
+                }
+                return $value;
+            } elseif ('from' == $direction && $currencyTo == $rate->CharCode) {
+                $value = floatval(str_replace(',', '.', $rate->Nominal)) / floatval(str_replace(',', '.', $rate->Value));
+                if ($fee) {
+                    $value += $value * (Mage::getStoreConfig('currency/cbrf/fee') / 100);
+                }
+                return $value;
+            }
+        }
+    }
+
+    /**
      * Retrieve rate
      *
      * @param   string $currencyFrom
@@ -54,21 +82,7 @@ class Mygento_Currency_Model_Cbrf extends Mage_Directory_Model_Currency_Import_A
                 return null;
             }
 
-            foreach ($xml->Valute as $rate) {
-                if ('to' == $direction && $currencyFrom == $rate->CharCode) {
-                    $value = floatval(str_replace(',', '.', $rate->Value)) / floatval(str_replace(',', '.', $rate->Nominal));
-                    if (Mage::getStoreConfig('currency/cbrf/fee')) {
-                        $value += $value * (Mage::getStoreConfig('currency/cbrf/fee') / 100);
-                    }
-                    return $value;
-                } elseif ('from' == $direction && $currencyTo == $rate->CharCode) {
-                    $value = floatval(str_replace(',', '.', $rate->Nominal)) / floatval(str_replace(',', '.', $rate->Value));
-                    if (Mage::getStoreConfig('currency/cbrf/fee')) {
-                        $value += $value * (Mage::getStoreConfig('currency/cbrf/fee') / 100);
-                    }
-                    return $value;
-                }
-            }
+            return $this->process_rates($xml->Valute, $direction, $currencyFrom, $currencyTo);
         } catch (Exception $e) {
             if ($retry == 0) {
                 $this->_convert($currencyFrom, $currencyTo, 1);
