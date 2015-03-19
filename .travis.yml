@@ -9,7 +9,9 @@ before_script:
   - pear install PHP_CodeSniffer
   - phpenv rehash
   - composer self-update
-  - composer install
+  - composer install --no-interaction
 
 script:
+  - php vendor/bin/phpcpd --exclude=vendor .
+  - php vendor/bin/phpdcd --exclude=vendor .
   - phpcs --standard=vendor/magento-ecg/coding-standard/Ecg --ignore=vendor .
