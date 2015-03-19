@@ -7,10 +7,17 @@
     "require": {
         "magento-hackathon/magento-composer-installer": "*"
     },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "2.*",
+        "magento-ecg/coding-standard": "dev-master"
+    },
     "repositories": [
         {
             "type": "vcs",
             "url": "https://github.com/mygento/currency.git"
         }
-    ]
+    ],
+    "extra": {
+        "magento-root-dir": "."
+    }
 }
