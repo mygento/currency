@@ -5,24 +5,21 @@
     "homepage": "https://github.com/mygento/currency.git",
     "description": "Курс валюты ЦБРФ",
     "require": {
-        "magento-hackathon/magento-composer-installer": "*"
+        "magento-hackathon/magento-composer-installer": "3.*",
+        "mygento/base":"1.*"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "2.*",
         "magento-ecg/coding-standard": "dev-master",
-	"sebastian/phpdcd": "*",
-	"sebastian/phpcpd": "*",
+        "mygento/coding-standard": "*",
+        "sebastian/phpdcd": "*",
+        "sebastian/phpcpd": "*",
         "jakub-onderka/php-parallel-lint": "0.*",
         "jakub-onderka/php-console-highlighter": "0.*",
-	"phpmd/phpmd" : "@stable"
+        "phpmd/phpmd" : "@stable"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/mygento/currency.git"
-        }
-    ],
     "extra": {
-        "magento-root-dir": "."
+        "magento-root-dir": ".",
+        "with-bootstrap-patch": false
     }
 }
